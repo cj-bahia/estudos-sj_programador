@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso HTML</title>
+</head>
+<body>
+    <h1>Formulários</h1>
+    <form>
+        <label for="pnome">Primeiro nome</label>
+        <input type="text" id="pnome" name="pnome" placeholder="Seu primeiro nome" required>
+        <br><br>
+        <label for="unome">Ultimo nome</label>
+        <input type="text" name="unome" id="unome" placeholder="Ultimo nome" required>
+        <br><br>
+        
+        <!--
+            Tipo RADIO
+        -->
+        <label>
+            <strong>Qual seu nivel de programador atualmente?</strong>
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="nivel" value="iniciante" checked>Sou iniciante
+        </label>
+        <label>
+            <input type="radio" name="nivel" value="medio">Comecei a pouco tempo
+        </label>
+        <label>
+            <input type="radio" name="nivel" value="avancado">Sou avançado
+        </label>
+        <br><br>
+
+        <!--
+            Tipo SELECT
+        -->
+        <label for="escolaridade">
+            <strong>Sua escolaridade</strong>
+        </label>
+        <select id="escolaridade" required>
+            <option selected disabled value="">Selecione</option>
+            <option>Educação básica</option>
+            <option>Ensino médio</option>
+            <option>Ensino superior</option>
+            <option>Pos graduação</option>
+        </select>
+        
+        <br><br>
+        <input type="submit" value="Cadastrar">
+    </form>
+</body>
+</html>
