@@ -1,0 +1,46 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+
+body {
+    font-family: sans-serif;
+    height: 180vh;
+}
+
+.container{
+    background-color: #121212;
+    height: 500px;
+    margin: 50px;
+
+    /* Ativando flexbox no container */
+    display: flex;
+    flex-direction: row;
+}
+
+.area{
+    width: 100px;
+    height: 100px;
+
+    flex-basis: 400px;
+    flex-grow: 1;
+}
+
+.item-1{
+    background-color: red;
+    flex-shrink: 1;
+}
+
+.item-2{
+    background-color: green;
+    flex-shrink: 1;
+}
+
+.item-3{
+    background-color: blue;
+
+    /* Esse elemento vai reduzir duas vezes mais que os elementos com flex-shrink 1*/
+    flex-shrink: 2;
+}
