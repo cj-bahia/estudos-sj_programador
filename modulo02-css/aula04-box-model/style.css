@@ -1,0 +1,23 @@
+body {
+    font-family: sans-serif;
+}
+
+.container{
+    background-color: #121212;
+    width: 700px;
+    color: #ffffff;
+
+    /* espaçamento externo */
+    margin-top: 70px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+    /* margin: 50px */
+
+    /* espaçamento interno */
+    padding: 30px;
+    /* também há top-left-right-bottom */
+
+    border: 5px solid red;
+    border-radius: 10px;
+}
