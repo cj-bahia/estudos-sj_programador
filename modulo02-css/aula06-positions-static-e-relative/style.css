@@ -1,0 +1,31 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    height: 180vh;
+}
+
+.container{
+    background-color: #121212;
+    width: 700px;
+    color: #ffffff;
+    margin: auto;
+    padding: 50px;
+    border: 5px solid red;
+    border-radius: 10px;
+}
+
+/*
+    > 1. Por padrão temos o Static ou seja estático.
+    > 2. Relative, elemento posicionado em relação a sua posição normal.
+    (top, bottom, left, right)
+*/
+
+.area{
+    position: relative;
+    top: 150px;
+    left: 90px;
+    border: 5px solid green
+}
