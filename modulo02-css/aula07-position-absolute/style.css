@@ -1,0 +1,41 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    height: 180vh;
+}
+
+.container{
+    background-color: #121212;
+    width: 700px;
+    color: #ffffff;
+    margin: auto;
+    padding: 50px;
+    border: 5px solid red;
+    border-radius: 10px;
+}
+
+/*
+    > 1. Por padrão temos o Static ou seja estático.
+    
+    > 2. Relative, elemento posicionado em relação a sua posição normal.
+    (top, bottom, left, right)
+    
+    > 3. Absolute, posicionado em relação ao seu elemento pai mais próximo que possui relatividade,
+    se não tiver relative é posicionado em relação ao body.
+*/
+
+.area{
+    position: relative;
+    width: 650px;
+    height: 500px;
+    border: 5px solid green
+}
+
+.area-absolute{
+    position: absolute;
+    bottom: 0;
+    border: 5px solid blue;
+}
