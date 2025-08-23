@@ -6,11 +6,17 @@
 
 a{
     text-decoration: none;
-    color: #3c96ed;
+    color: var(--button-primary);
 }
 
 body{
     --background: #FAFAFA;
+    --white: #FFFFFF;
+    --black: #000000;
+    --button-primary: #0095f6;
+    --border-primary: #e6e6e6;
+
+
 
     background-color: var(--background);
     height: 100%;
@@ -53,8 +59,8 @@ body{
 }
 
 .login-panel{
-    background-color: #FFF;
-    border: 1px solid #e6e6e6;
+    background-color: var(--white);
+    border: 1px solid var(--border-primary);
     text-align: center;
     padding: 20px 0;
 }
@@ -71,15 +77,15 @@ form{
 }
 
 input[type="password"], input[type="text"]{
-    background-color: #FFFFFF;
-    border: 1px solid rgb(236,234,234);
+    background-color: var(--white);
+    border: 1px solid var(--border-primary);
     height: 40px;
     width: 320px;
     border-radius: 4px;
     margin-top: 10px;
     padding: 10px;
     font-size: 13px;
-    color: #000000;
+    color: var(--black);
 }
 
 input[type="password"]::placeholder, input[type="text"]::placeholder{
@@ -88,7 +94,7 @@ input[type="password"]::placeholder, input[type="text"]::placeholder{
 
 input[type="password"]:focus, input[type="text"]:focus{
     outline: 0;
-    border: 1px solid #a1a1a1;
+    border: 1px solid var(--border-primary);
 }
 
 input[type="submit"]{
@@ -96,9 +102,9 @@ input[type="submit"]{
     height: 30px;
     margin-top: 10px;
     border: 0;
-    background-color: #3c96ed;
+    background-color: var(--button-primary);
     border-radius: 4px;
-    color: #FFFFFF;
+    color: var(--white);
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 10px;
@@ -106,9 +112,9 @@ input[type="submit"]{
 }
 
 .infobox{
-    background-color: #FFF;
+    background-color: var(--white);
     height: 60px;
-    border: 1px solid rgb(236, 234, 234);
+    border: 1px solid var(--border-primary);
     margin: 10px auto 0;
 
     display: flex;
@@ -146,7 +152,7 @@ footer{
 }
 
 footer a{
-    color: #000000;
+    color: var(--black);
     text-transform: uppercase;
     font-weight: bold;
     margin-right: 8px;
@@ -187,13 +193,13 @@ footer a{
     width: 320px;
     margin: 10px 0;
     height: 35px;
-    background-color: #3c96ed;
+    background-color: var(--button-primary);
     border: 0;
     border-radius: 4px;
     font-size: 15px;
     cursor: pointer;
     font-weight: bold;
-    color: #FFF;
+    color: var(--white);
 }
 
 .divisor-container{
@@ -205,7 +211,7 @@ footer a{
 
 .line{
     height: 1px;
-    background-color: #e6e6e6;
+    background-color: var(--border-primary);
     width: 35%;
 }
 
