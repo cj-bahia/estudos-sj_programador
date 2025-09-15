@@ -3,9 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    
+    <link rel="stylesheet" href="style.css">
+
+    <title>Projeto Desafio - Nova Conta</title>
 </head>
 <body>
-    
+    <div class="wrapper">
+         <div class="container">
+            <!-- left -->
+            <div class="column left">
+                <div class="sign-up">
+                    <h1>Nova conta</h1>
+
+                    <form>
+                        <input type="text" name="name" id="name" placeholder="Nome completo">
+                        <input type="email" name="email" id="email" placeholder="Digite seu email">
+                        <input type="password" name="password" id="password" placeholder="Digite sua senha">
+
+                        <label>
+                            <input type="checkbox" name="terms" id="terms"> Concordo com os termos.
+                        </label>
+
+                        <input type="submit" value="Criar conta">
+                        <div class="img"><img src="assets/code.svg" alt=""></div>
+                    </form>
+
+                    <div class="infobox">
+                        <a href="#"><p><span>Já possui uma conta?</span>Faça login</p></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- right -->
+            <div class="column right">
+                <img src="assets/info.png" alt="img de tecnologias">
+                <div class="text">
+                    <h2>Leve sua carreira ao próximo nível.</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egestas fermentum nibh volutpat turpis orci pharetra euismod quam non.</p>
+                </div>
+            </div>
+         </div>   
+    </div>
 </body>
 </html>
