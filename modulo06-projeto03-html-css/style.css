@@ -1,0 +1,125 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: 0;
+}
+
+body{
+    background-color: #FFF;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    line-height: 150%;
+}
+
+.wrapper{
+    height: 100vh;
+}
+
+.container{
+    margin: 0 auto;
+    min-height: 100%;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+}
+
+.column{
+    flex-grow: 1;
+    width: 50%;
+}
+
+.left{
+    height: 100vh;
+    width: 100%;
+    background-color: #FFF;
+    color: black;
+
+    display: flex;
+    flex-direction: column;
+    align-items : center;
+    justify-content: center;
+}   
+
+.sign-up{
+    width: 444px;
+}
+
+.sign-up h1{
+    font-weight: 700;
+    font-size: 42px;
+}
+
+.sign-up form{
+    display: flex;
+    flex-direction: column;
+}
+
+input[type="text"], input[type="password"], input[type="email"]{
+    background-color: #FFF;
+    border: 1px solid black;
+    border-radius: 4px;
+    
+    margin-top: 25px;
+    padding: 10px;
+    
+    width: 444px;
+    height: 49px;
+    
+    font-size: 16px;
+}
+
+input[type="text"]::placeholder, input[type="password"]::placeholder, input[type="email"]::placeholder{
+    color: black;
+}
+
+input[type="checkbox"]{
+    opacity: 1;
+    cursor: pointer;
+    height: 21px;
+    width: 21px;
+}
+
+input[type="submit"]{
+    background-color: #0056FB;
+    width: 444px;
+    height: 49px;
+    
+    border: 0;
+    border-radius: 4px;
+    
+    cursor: pointer;
+    
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+form img{
+    width: 92px;
+    height: 57px;
+    opacity: 0.4;
+}
+
+.right{
+    height: 100vh;
+    width: 100%;
+    background-color: #0056FB;
+    color: #FFF;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.text h2{
+    justify-self: center;
+    font-size: 48px;
+    font-weight: 700;
+}
