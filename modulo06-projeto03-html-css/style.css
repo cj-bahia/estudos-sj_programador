@@ -8,7 +8,7 @@
 body{
     background-color: #FFF;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
@@ -61,7 +61,9 @@ body{
     flex-direction: column;
 }
 
-input[type="text"], input[type="password"], input[type="email"]{
+input[type="text"],
+input[type="password"],
+input[type="email"]{
     background-color: #FFF;
     border: 1px solid black;
     border-radius: 4px;
@@ -74,7 +76,9 @@ input[type="text"], input[type="password"], input[type="email"]{
     font-size: 16px;
 }
 
-input[type="text"]::placeholder, input[type="password"]::placeholder, input[type="email"]::placeholder{
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+input[type="email"]::placeholder{
     color: black;
     padding-left: 20px;
     font-weight: 400;
@@ -156,8 +160,8 @@ form img{
 }
 
 .right img{
-    width: 628;
-    height: 421;
+    width: 525px;
+    height: 352px;
 }
 
 .text h2{
@@ -179,3 +183,49 @@ form img{
     font-weight: 400;
 }
 /* Fim Right */
+
+/* Responsividade */
+@media(max-width:1160px){
+    .container{
+        display: block;
+    }
+
+    .column{
+        flex-grow: unset;
+        width: 100%;
+    }
+
+    .sign-up{
+        width: 400px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"]{
+        width: 400px;
+    }
+
+    input[type="submit"]{
+        width: 400px;
+    }
+}
+
+@media(max-width:570px){
+    .sign-up h1{
+        font-size: 32px;
+    }
+
+    .text h2{
+        font-size: 38px;
+    }
+
+    .text p{
+        font-size: 15px;
+        width: 363px;
+    }
+
+    .right img{
+        width: 400px;
+        height: 268px;
+    }
+}
