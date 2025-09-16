@@ -14,6 +14,7 @@ body{
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
     line-height: 150%;
+    letter-spacing: 1px;    
 }
 
 .wrapper{
@@ -24,7 +25,7 @@ body{
     margin: 0 auto;
     min-height: 100%;
     width: 100%;
-
+    
     display: flex;
     align-items: center;
 }
@@ -39,7 +40,7 @@ body{
     width: 100%;
     background-color: #FFF;
     color: black;
-
+    
     display: flex;
     flex-direction: column;
     align-items : center;
@@ -66,7 +67,6 @@ input[type="text"], input[type="password"], input[type="email"]{
     border-radius: 4px;
     
     margin-top: 25px;
-    padding: 10px;
     
     width: 444px;
     height: 49px;
@@ -76,6 +76,16 @@ input[type="text"], input[type="password"], input[type="email"]{
 
 input[type="text"]::placeholder, input[type="password"]::placeholder, input[type="email"]::placeholder{
     color: black;
+    padding-left: 20px;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 1px;    
+}
+
+.check{
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
 }
 
 input[type="checkbox"]{
@@ -83,12 +93,14 @@ input[type="checkbox"]{
     cursor: pointer;
     height: 21px;
     width: 21px;
+    margin-right: 14px;
 }
 
 input[type="submit"]{
     background-color: #0056FB;
     width: 444px;
     height: 49px;
+    margin-top: 25px;
     
     border: 0;
     border-radius: 4px;
@@ -98,14 +110,39 @@ input[type="submit"]{
     color: #FFF;
     font-size: 16px;
     font-weight: 700;
+    letter-spacing: 1px;    
 }
 
 form img{
     width: 92px;
     height: 57px;
     opacity: 0.4;
+
+    margin-top: -23px;
+    margin-right: -45px;
 }
 
+.btn-form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.infobox p{
+    font-size: 16px;
+}
+
+.infobox a{
+    text-decoration: none;
+    color: black;
+}
+
+.infobox span{
+    font-weight: 700;
+}
+/* Fim Left */
+
+/* Right */
 .right{
     height: 100vh;
     width: 100%;
@@ -118,8 +155,27 @@ form img{
     justify-content: center;
 }
 
+.right img{
+    width: 628;
+    height: 421;
+}
+
 .text h2{
+    margin-top: 36px;
+
     justify-self: center;
+    
     font-size: 48px;
     font-weight: 700;
+    line-height: 100%;
 }
+
+.text p{
+    width: 438px;
+    margin-top: 21px;
+
+    line-height: 150%;
+    font-size: 18px;
+    font-weight: 400;
+}
+/* Fim Right */
