@@ -75,3 +75,8 @@ Sou **Carlos Bahia**, desenvolvedor Full Stack em início de carreira, usando es
 ---
 
 <p align="center">Atualizado conforme avanço nos estudos 🚀</p>
+
+---
+
+> ⚠️ Este repositório contém anotações e códigos de estudo baseados em um curso privado.
+> ⚠️ O conteúdo é de uso pessoal e não deve ser redistribuído.
