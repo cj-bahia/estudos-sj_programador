@@ -53,10 +53,10 @@ Este repo é o meu diário de bordo de estudos. Aqui registro tudo que aprendo n
 
 ```
 /
-├── html-css/
-│   ├── projeto-instagram/
+├── modulo01-html/
+│   ├── aula02-texto/
 │   └── ...
-├── javascript/
+├── modulo02-css/
 │   └── ...
 └── ...
 ```
