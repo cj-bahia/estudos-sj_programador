@@ -3,7 +3,7 @@ let listElement = document.querySelector("#app ul");
 let inputElement = document.querySelector("#app input");
 let buttonElement = document.querySelector("#app button");
 
-let tarefas = []; // Array para armazenar as tarefas
+let tarefas = JSON.parse(localStorage.getItem("@listaTarefas")) || []; // Array para armazenar as tarefas
 
 function renderizarTarefas(){
 
@@ -30,6 +30,8 @@ function renderizarTarefas(){
 
 }
 
+renderizarTarefas(); // Chamando a função para renderizar as tarefas inicialmente
+
 function adicionarTarefas(){
     
     if (inputElement.value === ''){
@@ -42,13 +44,21 @@ function adicionarTarefas(){
         inputElement.value = ''; // Limpando o campo de input
 
         renderizarTarefas(); // Chamando a função para renderizar as tarefas atualizadas
+        
+        salvarDados(); // Chamando a função para salvar os dados no localStorage
     }
 
 }
+
 function deletarTarefas(posicao){
     tarefas.splice(posicao, 1); // Removendo a tarefa do array com base na posição
     renderizarTarefas(); // Chamando a função para renderizar as tarefas atualizadas
+    
+    salvarDados(); // Chamando a função para salvar os dados no localStorage
 }
 
+function salvarDados(){
+    localStorage.setItem("@listaTarefas", JSON.stringify(tarefas)); // Salvando o array de tarefas no localStorage como uma string JSON
+}
 
 buttonElement.onclick = adicionarTarefas; // Atribuindo a função ao evento de clique do botão
