@@ -1,4 +1,4 @@
-// Funções anonimas
+// Funções anônimas
 
 /*
 
