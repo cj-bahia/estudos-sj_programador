@@ -1,9 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App(){
 
   const [input, setInput] = useState('');
   const [tarefas, setTarefas] = useState<string[]>([]); // Precisa do <string[]> para indicar que o array irá conter strings
+
+  useEffect(() => { // useEffect para carregar as tarefas do localStorage
+    const tarefasStorage = localStorage.getItem('@tarefa');
+
+    if(tarefasStorage){
+      setTarefas(JSON.parse(tarefasStorage));
+    }
+  }, []);
+
+  useEffect(() => { // useEffect para salvar as tarefas no localStorage
+    if(tarefas.length === 0){
+      return;
+    }
+
+    localStorage.setItem('@tarefa', JSON.stringify(tarefas));
+  }, [tarefas]);
 
   function handleRegister(event: React.SyntheticEvent<HTMLFormElement>){ // Função para lidar com o envio do formulário
     event.preventDefault();
