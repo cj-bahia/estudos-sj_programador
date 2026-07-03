@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import api from "../../services/api"
+import "./home.css"
 
 // API_URL: /movie/now_playing?api_key=f1dd778f93caaa510c295dabd3c08be3&language=pt-BR
 
+interface Filme{
+  id: number
+  title: string
+  poster_path: string
+}
+
 function Home() {
-  const [filmes, setFilmes] = useState([])
+  const [filmes, setFilmes] = useState<Filme[]>([])
 
   useEffect(() => {
     async function loadFilmes(){
@@ -16,7 +24,7 @@ function Home() {
         }
       })
 
-      console.log(response.data.results)
+      setFilmes(response.data.results.slice(0, 10))
 
     }
 
@@ -25,8 +33,18 @@ function Home() {
   }, [])
 
   return (
-    <div>
-      <h1>Bem vindo a Home</h1>
+    <div className="container">
+      <div className="lista-filmes">
+        {filmes.map((filme) => {
+          return(
+            <article key={filme.id}>
+              <strong>{filme.title}</strong>
+              <img src={`https://image.tmdb.org/t/p/original/${filme.poster_path}`} alt={`capa do filme: ${filme.title}`} />
+              <Link to={`/filme/${filme.id}`}>Acessar</Link>
+            </article>
+          )
+        })}
+      </div>
     </div>
   )
 }
