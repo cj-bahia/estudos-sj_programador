@@ -3,8 +3,6 @@ import { Link } from "react-router-dom"
 import api from "../../services/api"
 import "./home.css"
 
-// API_URL: /movie/now_playing?api_key=f1dd778f93caaa510c295dabd3c08be3&language=pt-BR
-
 interface Filme{
   id: number
   title: string
