@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 
 import './filme-info.css'
 import api from "../../services/api"
@@ -14,6 +14,8 @@ interface Filme{
 
 function Filme() {
   const { id } = useParams<{id: string}>()
+  const navigate = useNavigate();
+
   const [filme, setFilme] = useState<Filme | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -29,12 +31,13 @@ function Filme() {
       setFilme(response.data)
       setLoading(false)
       } catch {
-        console.log("Filme nao encontrado")
+        navigate("/", { replace: true })
+        return
       }
     }
 
     loadFilme()
-  }, [id])
+  }, [navigate ,id])
 
   if(loading || !filme){
     return(
@@ -57,7 +60,7 @@ function Filme() {
       <div className="area-buttons">
         <button>Salvar</button>
         <button>
-          <a href="#">
+          <a target="_blank" rel="external" href={`https://youtube.com/results?search_query=${filme.title} trailer`}>
             Trailer
           </a>
         </button>
