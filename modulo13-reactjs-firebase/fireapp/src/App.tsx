@@ -8,6 +8,7 @@ import {
   getDoc,
   getDocs,
   updateDoc,
+  deleteDoc,
 } from "firebase/firestore";
 
 import "./app.css";
@@ -103,6 +104,19 @@ function App() {
     }
   }
 
+  async function excluirPost(id: string) {
+    try {
+      const docRef = doc(db, "posts", id);
+      await deleteDoc(docRef);
+
+      alert("POST DELETADO COM SUCESSO!");
+
+      buscarPost();
+    } catch (error) {
+      console.log("ERRO AO TENTAR EXCLUIR ITEM: " + error);
+    }
+  }
+
   return (
     <div>
       <h1>ReactJS + Firebase</h1>
@@ -144,6 +158,7 @@ function App() {
                 <br />
                 <span>Autor: {post.autor}</span>
                 <br />
+                <button onClick={() => excluirPost(post.id)}>Excluir</button>
                 <br />
               </li>
             );
