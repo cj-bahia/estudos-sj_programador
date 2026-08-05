@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import { db } from "./firebaseConnection";
 import {
   doc,
@@ -7,6 +7,7 @@ import {
   addDoc,
   getDoc,
   getDocs,
+  updateDoc,
 } from "firebase/firestore";
 
 import "./app.css";
@@ -20,6 +21,8 @@ interface Post {
 function App() {
   const [titulo, setTitulo] = useState("");
   const [autor, setAutor] = useState("");
+  const [idPost, setIdPost] = useState("");
+
   const [posts, setPosts] = useState<Post[]>([]);
 
   async function handleAdd() {
@@ -48,6 +51,8 @@ function App() {
   }
 
   async function buscarPost() {
+    // Buscando somente um post
+    //
     // try {
     //   const postRef = doc(db, "posts", "3Pj4UQQh9kJxoqwU5N2Q");
     //   const snapshot = await getDoc(postRef);
@@ -61,6 +66,7 @@ function App() {
     //   console.log("ERRO AO BUSCAR" + error);
     // }
 
+    //Listando os posts
     try {
       const postRef = collection(db, "posts");
       const snapshot = await getDocs(postRef);
@@ -80,11 +86,35 @@ function App() {
     }
   }
 
+  async function editarPost() {
+    try {
+      const docRef = doc(db, "posts", idPost);
+      await updateDoc(docRef, {
+        titulo: titulo,
+        autor: autor,
+      });
+
+      console.log("POST ATUALIZADO!");
+      setIdPost("");
+      setTitulo("");
+      setAutor("");
+    } catch (error) {
+      console.log("ERRO AO ATUALZIAR POST: " + error);
+    }
+  }
+
   return (
     <div>
       <h1>ReactJS + Firebase</h1>
 
       <div className="container">
+        <label>ID do Post:</label>
+        <input
+          placeholder="Digite o ID do post"
+          value={idPost}
+          onChange={(e) => setIdPost(e.target.value)}
+        />
+
         <label>Título:</label>
         <textarea
           placeholder="digite o título"
@@ -102,11 +132,14 @@ function App() {
 
         <button onClick={handleAdd}>Cadastrar</button>
         <button onClick={buscarPost}>Buscar post</button>
+        <button onClick={editarPost}>Atualizar post</button>
 
         <ul>
           {posts.map((post) => {
             return (
               <li key={post.id}>
+                <strong>ID: {post.id}</strong>
+                <br />
                 <span>Titulo: {post.titulo} </span>
                 <br />
                 <span>Autor: {post.autor}</span>
