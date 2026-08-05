@@ -1,12 +1,26 @@
 import { useState } from "react";
 import { db } from "./firebaseConnection";
-import { doc, setDoc, collection, addDoc, getDoc } from "firebase/firestore";
+import {
+  doc,
+  setDoc,
+  collection,
+  addDoc,
+  getDoc,
+  getDocs,
+} from "firebase/firestore";
 
 import "./app.css";
+
+interface Post {
+  id: string;
+  titulo: string;
+  autor: string;
+}
 
 function App() {
   const [titulo, setTitulo] = useState("");
   const [autor, setAutor] = useState("");
+  const [posts, setPosts] = useState<Post[]>([]);
 
   async function handleAdd() {
     // try {
@@ -34,17 +48,35 @@ function App() {
   }
 
   async function buscarPost() {
-    try {
-      const postRef = doc(db, "posts", "3Pj4UQQh9kJxoqwU5N2Q");
-      const snapshot = await getDoc(postRef);
-      const data = snapshot.data();
+    // try {
+    //   const postRef = doc(db, "posts", "3Pj4UQQh9kJxoqwU5N2Q");
+    //   const snapshot = await getDoc(postRef);
+    //   const data = snapshot.data();
 
-      if (data) {
-        setTitulo(data.titulo ?? "");
-        setAutor(data.autor ?? "");
-      }
+    //   if (data) {
+    //     setTitulo(data.titulo ?? "");
+    //     setAutor(data.autor ?? "");
+    //   }
+    // } catch (error) {
+    //   console.log("ERRO AO BUSCAR" + error);
+    // }
+
+    try {
+      const postRef = collection(db, "posts");
+      const snapshot = await getDocs(postRef);
+      let lista: Post[] = [];
+
+      snapshot.forEach((doc) => {
+        lista.push({
+          id: doc.id,
+          titulo: doc.data().titulo,
+          autor: doc.data().autor,
+        });
+      });
+
+      setPosts(lista);
     } catch (error) {
-      console.log("ERRO AO BUSCAR" + error);
+      console.log("DEU ERRO AO BUSCAR: " + error);
     }
   }
 
@@ -70,6 +102,20 @@ function App() {
 
         <button onClick={handleAdd}>Cadastrar</button>
         <button onClick={buscarPost}>Buscar post</button>
+
+        <ul>
+          {posts.map((post) => {
+            return (
+              <li key={post.id}>
+                <span>Titulo: {post.titulo} </span>
+                <br />
+                <span>Autor: {post.autor}</span>
+                <br />
+                <br />
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </div>
   );
