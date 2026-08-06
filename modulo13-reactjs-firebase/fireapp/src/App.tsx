@@ -1,4 +1,4 @@
-import { use, useState } from "react";
+import { useState, useEffect, cloneElement } from "react";
 import { db } from "./firebaseConnection";
 import {
   doc,
@@ -9,6 +9,7 @@ import {
   getDocs,
   updateDoc,
   deleteDoc,
+  onSnapshot,
 } from "firebase/firestore";
 
 import "./app.css";
@@ -25,6 +26,60 @@ function App() {
   const [idPost, setIdPost] = useState("");
 
   const [posts, setPosts] = useState<Post[]>([]);
+
+  useEffect(() => {
+    // async function loadPosts() {
+    //   const postRef = collection(db, "posts");
+    //   await getDocs(postRef);
+
+    //   const unsub = onSnapshot(postRef, (snapshot) => {
+    //     let listaPost: Post[] = [];
+
+    //     snapshot.forEach((doc) => {
+    //       listaPost.push({
+    //         id: doc.id,
+    //         titulo: doc.data().titulo,
+    //         autor: doc.data().autor,
+    //       });
+    //     });
+
+    //     setPosts(listaPost);
+    //   });
+    // }
+
+    // loadPosts();
+    
+    let unsub: () => void;
+
+    async function loadPosts() {
+      try {
+        const postRef = collection(db, "posts");
+        await getDocs(postRef);
+
+        unsub = onSnapshot(postRef, (snapshot) => {
+          let listaPost: Post[] = [];
+
+          snapshot.forEach((doc) => {
+            listaPost.push({
+              id: doc.id,
+              titulo: doc.data().titulo,
+              autor: doc.data().autor,
+            });
+          });
+
+          setPosts(listaPost);
+        });
+      } catch (error) {
+        console.log("ERRO: " + error);
+      }
+    }
+
+    loadPosts();
+    
+    return () => {
+      if (unsub) unsub();
+    };
+  }, []);
 
   async function handleAdd() {
     // try {
@@ -110,8 +165,6 @@ function App() {
       await deleteDoc(docRef);
 
       alert("POST DELETADO COM SUCESSO!");
-
-      buscarPost();
     } catch (error) {
       console.log("ERRO AO TENTAR EXCLUIR ITEM: " + error);
     }
