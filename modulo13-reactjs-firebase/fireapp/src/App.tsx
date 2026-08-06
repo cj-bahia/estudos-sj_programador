@@ -1,5 +1,5 @@
 import { useState, useEffect, cloneElement } from "react";
-import { db } from "./firebaseConnection";
+import { db, auth } from "./firebaseConnection";
 import {
   doc,
   setDoc,
@@ -11,6 +11,8 @@ import {
   deleteDoc,
   onSnapshot,
 } from "firebase/firestore";
+
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import "./app.css";
 
@@ -24,6 +26,9 @@ function App() {
   const [titulo, setTitulo] = useState("");
   const [autor, setAutor] = useState("");
   const [idPost, setIdPost] = useState("");
+
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
 
   const [posts, setPosts] = useState<Post[]>([]);
 
@@ -48,7 +53,7 @@ function App() {
     // }
 
     // loadPosts();
-    
+
     let unsub: () => void;
 
     async function loadPosts() {
@@ -75,7 +80,7 @@ function App() {
     }
 
     loadPosts();
-    
+
     return () => {
       if (unsub) unsub();
     };
@@ -170,11 +175,55 @@ function App() {
     }
   }
 
+  async function novoUsuario() {
+    try {
+      await createUserWithEmailAndPassword(auth, email, senha);
+
+      setEmail("");
+      setSenha("");
+
+      console.log("USUÁRIO CADASTRADO COM SUCESSO!");
+    } catch (error) {
+      const err = error as any;
+      if (err.code === "auth/weak-password") {
+        alert("Senha muito fraca!");
+      } else if (err.code === "auth/email-already-in-use") {
+        alert("Email já está sendo usado!");
+      }
+    }
+  }
+
   return (
     <div>
       <h1>ReactJS + Firebase</h1>
 
       <div className="container">
+        <h2> Usuários</h2>
+
+        <label>Email:</label>
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Digite um email"
+        />
+
+        <label>Senha</label>
+        <input
+          value={senha}
+          onChange={(e) => setSenha(e.target.value)}
+          placeholder="Digite uma senha"
+        />
+
+        <button onClick={novoUsuario}>Cadastrar</button>
+      </div>
+
+      <br />
+      <br />
+      <hr />
+
+      <div className="container">
+        <h2>Posts</h2>
+
         <label>ID do Post:</label>
         <input
           placeholder="Digite o ID do post"
