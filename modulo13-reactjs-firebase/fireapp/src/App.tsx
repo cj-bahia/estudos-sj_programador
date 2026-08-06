@@ -12,7 +12,11 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 
 import "./app.css";
 
@@ -22,6 +26,11 @@ interface Post {
   autor: string;
 }
 
+interface UserDetail {
+  uid: string;
+  email: string | null;
+}
+
 function App() {
   const [titulo, setTitulo] = useState("");
   const [autor, setAutor] = useState("");
@@ -29,6 +38,9 @@ function App() {
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+
+  const [user, setUser] = useState(false);
+  const [userDetail, setUserDetail] = useState<UserDetail | null>(null);
 
   const [posts, setPosts] = useState<Post[]>([]);
 
@@ -193,9 +205,55 @@ function App() {
     }
   }
 
+  async function loginUsuario() {
+    try {
+      const result = await signInWithEmailAndPassword(auth, email, senha);
+
+      setUserDetail({
+        uid: result.user.uid,
+        email: result.user.email,
+      });
+
+      setUser(true);
+
+      setEmail("");
+      setSenha("");
+
+      console.log("USUÁRIO LOGADO COM SUCESSO!");
+    } catch (error) {
+      console.log("ERRO AO FAZER LOGIN! " + error);
+    }
+  }
+
+  async function fazerLogout() {
+    try {
+      await signOut(auth);
+
+      setUser(false);
+      setUserDetail(null);
+    } catch (error) {
+      console.log("ERRO AO SAIR DA CONTA: " + error);
+    }
+  }
+
   return (
     <div>
       <h1>ReactJS + Firebase</h1>
+
+      {user && (
+        <div>
+          <strong>Seja bem-vindo(a) (Você está logado!)</strong>
+          <br />
+          <span>
+            ID: {userDetail?.uid} - Email: {userDetail?.email}
+          </span>
+          <br />
+          <br />
+          <button onClick={fazerLogout}>Sair da conta</button>
+        </div>
+      )}
+
+      <hr />
 
       <div className="container">
         <h2> Usuários</h2>
@@ -215,6 +273,7 @@ function App() {
         />
 
         <button onClick={novoUsuario}>Cadastrar</button>
+        <button onClick={loginUsuario}>Fazer login</button>
       </div>
 
       <br />
@@ -246,7 +305,7 @@ function App() {
           onChange={(e) => setAutor(e.target.value)}
         />
 
-        <button onClick={handleAdd}>Cadastrar</button>
+        <button onClick={handleAdd}>Criar post</button>
         <button onClick={buscarPost}>Buscar post</button>
         <button onClick={editarPost}>Atualizar post</button>
 
